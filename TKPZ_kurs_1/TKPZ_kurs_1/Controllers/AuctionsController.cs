@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TKPZ_kurs_1.Models;
 
 namespace TKPZ_kurs_1.Controllers
 {
@@ -13,35 +14,8 @@ namespace TKPZ_kurs_1.Controllers
 
         public ActionResult Index()
         {
-            var auctions = new[] {
-                new Models.Auction()
-                {
-                    Title = "Example Auction #1",
-                    Description = "Descr",
-                    StartTime = DateTime.Now,
-                    EndTime = DateTime.Now.AddDays(7),
-                    StartPrice = 1.00m,
-                    CurrentPrice = null,
-                },
-                new Models.Auction()
-                {
-                    Title = "Example Auction #2",
-                    Description = "Descr",
-                    StartTime = DateTime.Now,
-                    EndTime = DateTime.Now.AddDays(7),
-                    StartPrice = 1.00m,
-                    CurrentPrice = null,
-                },
-                new Models.Auction()
-                {
-                    Title = "Example Auction #3",
-                    Description = "Descr",
-                    StartTime = DateTime.Now,
-                    EndTime = DateTime.Now.AddDays(7),
-                    StartPrice = 1.00m,
-                    CurrentPrice = null,
-                },
-            };
+            var db = new AuctionsDataContext();
+            var auctions = db.Auctions.ToArray();
 
             return View(auctions);
         }
@@ -55,15 +29,8 @@ namespace TKPZ_kurs_1.Controllers
 
         public ActionResult Auction(long id)
         {
-            var auction = new TKPZ_kurs_1.Models.Auction()
-            {
-                Title = "Example",
-                Description = "This is an example",
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now.AddDays(7),
-                StartPrice = 1.00m,
-                CurrentPrice = null,
-            };
+            var db = new AuctionsDataContext();
+            var auction = db.Auctions.Find(id);
 
             return View(auction);
         }
@@ -84,6 +51,9 @@ namespace TKPZ_kurs_1.Controllers
             if (ModelState.IsValid)
             {
                 // Save
+                var db = new AuctionsDataContext();
+                db.Auctions.Add(auction);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return Create();
