@@ -53,7 +53,7 @@ namespace TKPZ_kurs_1.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Auction()
+        public ActionResult Auction(long id)
         {
             var auction = new TKPZ_kurs_1.Models.Auction()
             {
@@ -68,6 +68,8 @@ namespace TKPZ_kurs_1.Controllers
             return View(auction);
         }
 
+
+        [HttpGet]
         public ActionResult Create()
         {
             var categoryList = new SelectList(new[] { "el1", "el2" });
@@ -75,6 +77,17 @@ namespace TKPZ_kurs_1.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        public ActionResult Create([Bind (Exclude="CurrentPrice")]Models.Auction auction)
+        {
+            if (ModelState.IsValid)
+            {
+                // Save
+                return RedirectToAction("Index");
+            }
+            return Create();
+        }
     }
 
 }
