@@ -1,11 +1,22 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model IEnumerable<TKPZ_kurs_1.Models.Auction>
+
+@{
+    ViewBag.Title = "Auctions";
 }
 
-<h2>Index</h2>
-<p>Hello World 1!!</p>
-
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="success-message">@TempData["SuccessMessage"]</div>
+@section Featured{
+    <section class="featured">
+        <div class="content-wrapper">Some cool feature explained here!</div>
+    </section>
 }
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var item in Model) {
+    @Html.Partial("_AuctionTile", item)
+}
+

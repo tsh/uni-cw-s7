@@ -13,7 +13,37 @@ namespace TKPZ_kurs_1.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var auctions = new[] {
+                new Models.Auction()
+                {
+                    Title = "Example Auction #1",
+                    Description = "Descr",
+                    StartTime = DateTime.Now,
+                    EndTime = DateTime.Now.AddDays(7),
+                    StartPrice = 1.00m,
+                    CurrentPrice = null,
+                },
+                new Models.Auction()
+                {
+                    Title = "Example Auction #2",
+                    Description = "Descr",
+                    StartTime = DateTime.Now,
+                    EndTime = DateTime.Now.AddDays(7),
+                    StartPrice = 1.00m,
+                    CurrentPrice = null,
+                },
+                new Models.Auction()
+                {
+                    Title = "Example Auction #3",
+                    Description = "Descr",
+                    StartTime = DateTime.Now,
+                    EndTime = DateTime.Now.AddDays(7),
+                    StartPrice = 1.00m,
+                    CurrentPrice = null,
+                },
+            };
+
+            return View(auctions);
         }
 
         public ActionResult TempDataDemo()
