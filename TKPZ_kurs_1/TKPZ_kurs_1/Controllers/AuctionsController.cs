@@ -68,5 +68,13 @@ namespace TKPZ_kurs_1.Controllers
             return View(auction);
         }
 
+        public ActionResult Create()
+        {
+            var categoryList = new SelectList(new[] { "el1", "el2" });
+            ViewBag.CategoryList = categoryList;
+            return View();
+        }
+
     }
+
 }
