@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace TKPZ_kurs_1.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()

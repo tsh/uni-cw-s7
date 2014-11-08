@@ -10,9 +10,8 @@ namespace TKPZ_kurs_1.Controllers
 {
     public class AuctionController : Controller
     {
-        //
-        // GET: /Auctions/
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var db = new AuctionsDataContext();
@@ -47,6 +46,7 @@ namespace TKPZ_kurs_1.Controllers
 
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create([Bind (Exclude="CurrentPrice")]Models.Auction auction)
         {
             if (ModelState.IsValid)
