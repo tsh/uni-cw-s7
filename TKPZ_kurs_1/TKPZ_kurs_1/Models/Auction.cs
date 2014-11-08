@@ -10,11 +10,7 @@ namespace TKPZ_kurs_1.Models
     public class Auction
     {
         [Required]
-        public long Id { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        public string Category { get; set; }
+        public long Id { get; set; }       
 
         [Required]
         [DataType(DataType.Text)]
@@ -22,11 +18,7 @@ namespace TKPZ_kurs_1.Models
         public string Title { get; set; }
 
         [DataType(DataType.MultilineText)]
-        public string Description { get; set; }
-
-        [DataType(DataType.ImageUrl)]
-        [Display(Name = "Image URL")]
-        public string ImageUrl { get; set; }
+        public string Description { get; set; }        
 
         [DataType(DataType.DateTime)]
         [Display(Name = "Start Time")]

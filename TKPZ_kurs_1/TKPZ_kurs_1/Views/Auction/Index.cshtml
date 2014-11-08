@@ -6,20 +6,17 @@
 }
 
 @section Sidebar {
-    <h3>Sidebaaar!</h3>
+    @Html.ActionLink("Create New", "Create")
 }
 
 @section Featured{
     <section class="featured">
-        <div class="content-wrapper">Some cool feature explained here!</div>
+        <div class="content-wrapper">Current Auctions:</div>
     </section>
 }
 
 <h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
 @foreach (var item in Model) {
     @Html.Partial("_AuctionTile", item)

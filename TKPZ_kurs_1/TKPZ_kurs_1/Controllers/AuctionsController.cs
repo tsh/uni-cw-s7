@@ -39,8 +39,6 @@ namespace TKPZ_kurs_1.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var categoryList = new SelectList(new[] { "el1", "el2" });
-            ViewBag.CategoryList = categoryList;
             return View();
         }
 
