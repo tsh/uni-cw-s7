@@ -314,6 +314,7 @@
     <Content Include="Views\Shared\_AuctionTile.cshtml" />
     <Content Include="Views\Shared\_LayoutWithSideBar.cshtml" />
     <Content Include="Views\Auction\Create.cshtml" />
+    <Content Include="Views\Auction\_CurrentPrice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

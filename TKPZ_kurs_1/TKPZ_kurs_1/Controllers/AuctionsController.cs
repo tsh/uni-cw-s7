@@ -85,8 +85,7 @@ namespace TKPZ_kurs_1.Controllers
             if (!Request.IsAjaxRequest())
                 return RedirectToAction("Auction", new { id = bid.AuctionId });
 
-            var httpStatus = ModelState.IsValid ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
-            return new HttpStatusCodeResult(httpStatus);
+            return PartialView("_CurrentPrice", auction);
         }
     }
 
