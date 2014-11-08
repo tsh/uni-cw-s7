@@ -18,6 +18,21 @@
             else
             {
                 <span>@auction.CurrentPrice.ToString()</span>
+                <span>[@auction.BidCount bids]</span>
+            }
+        </p>
+        <p>
+            @using (Html.BeginForm("Bid", "Auction"))
+            {
+                var lowestBidAmount = auction.CurrentPrice.GetValueOrDefault(auction.StartPrice) + 1;
+                
+                <span>
+                    Bid: $@Html.TextBox("amount", lowestBidAmount)
+                    @Html.ValidationMessage("amount")
+                </span>
+                
+                @Html.Hidden("auctionId", auction.Id)
+                <input class="post-bid" type="submit" value="Bid" />
             }
         </p>
     </div>
@@ -30,3 +45,28 @@
         @auction.Description
     </div>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('.post-bid').on("click", function () {
+
+                var form = $(this).parent("form");
+
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize()
+                })
+                    .success(function (html) {
+                        $('.current-price').replaceWith(html);
+                    })
+                    .error(function () {
+                        alert("Your bid has been rejected");
+                    });
+
+                return false;
+            });
+        });
+    </script>
+    }
