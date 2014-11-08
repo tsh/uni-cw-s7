@@ -46,6 +46,13 @@
     </div>
 </div>
 
+<script id="current-price-template" type="application/html-template">
+    <p class="current-price">
+        <span>Current Price: {{CurrentPrice}}</span>
+        <span>[{{BidCount}} bids]</span>
+    </p>
+</script>
+
 @section Scripts {
     <script type="text/javascript">
         $(function () {
@@ -58,7 +65,12 @@
                     url: form.attr('action'),
                     data: form.serialize()
                 })
-                    .success(function (html) {
+                    .success(function (data) {
+                        var template = $('#current-price-template').clone().html();
+
+                        var html = template
+                                    .replace('{{CurrentPrice}}', data.CurrentPrice)
+                                    .replace('{{BidCount}}', data.BidCount);
                         $('.current-price').replaceWith(html);
                     })
                     .error(function () {

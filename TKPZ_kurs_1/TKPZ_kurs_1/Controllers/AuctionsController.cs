@@ -85,7 +85,11 @@ namespace TKPZ_kurs_1.Controllers
             if (!Request.IsAjaxRequest())
                 return RedirectToAction("Auction", new { id = bid.AuctionId });
 
-            return PartialView("_CurrentPrice", auction);
+            return Json(new
+            {
+                CurrentPrice = bid.Amount.ToString("C"),
+                BidCount = auction.BidCount
+            });
         }
     }
 
