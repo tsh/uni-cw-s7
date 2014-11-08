@@ -61,6 +61,7 @@ namespace TKPZ_kurs_1.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Bid(Bid bid)
         {
             var db = new AuctionsDataContext();
